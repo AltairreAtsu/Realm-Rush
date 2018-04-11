@@ -152,26 +152,19 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 102511046402488100, guid: b0617f683b83c90459e35df0c4a516a3,
+        type: 2}
+      propertyPath: m_Text
+      value: 0, 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 102511046402488100, guid: b0617f683b83c90459e35df0c4a516a3,
+        type: 2}
+      propertyPath: m_FontStyle
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0617f683b83c90459e35df0c4a516a3, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &210389844 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1737595325506642, guid: b0617f683b83c90459e35df0c4a516a3,
-    type: 2}
-  m_PrefabInternal: {fileID: 210389843}
---- !u!114 &210389845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 210389844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75e40bc661a34ac46bb706704b974a35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gridSize: 10
 --- !u!1 &1173331111
 GameObject:
   m_ObjectHideFlags: 0
