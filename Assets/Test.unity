@@ -539,6 +539,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 599584950}
+  - component: {fileID: 599584951}
   m_Layer: 0
   m_Name: Enemies
   m_TagString: Untagged
@@ -556,10 +557,26 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1694338006}
   - {fileID: 686893147}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &599584951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 599584949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee0c3f2c1d618d45bc5005e86480a08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBetweenSpawns: 1.5
+  enemyPrefab: {fileID: 114046048235990396, guid: 80f3126f64c2f414d8ff09628e7c1a8c,
+    type: 2}
+  spawnLocation: {fileID: 1694338006}
 --- !u!4 &686893147 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4024465461985562, guid: 80f3126f64c2f414d8ff09628e7c1a8c,
@@ -988,7 +1005,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4024465461985562, guid: 80f3126f64c2f414d8ff09628e7c1a8c, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4024465461985562, guid: 80f3126f64c2f414d8ff09628e7c1a8c, type: 2}
       propertyPath: m_LocalScale.x
@@ -1203,6 +1220,34 @@ Transform:
   m_PrefabParentObject: {fileID: 4229906570052104, guid: b621189c07bc8e34e929f67dbdad9f48,
     type: 2}
   m_PrefabInternal: {fileID: 1533592072}
+--- !u!1 &1694338005
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1694338006}
+  m_Layer: 0
+  m_Name: Enemy Spawn Ppoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1694338006
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1694338005}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 599584950}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!1 &1739666391
 GameObject:
   m_ObjectHideFlags: 0
