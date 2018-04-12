@@ -38,7 +38,7 @@ public class Waypoint : MonoBehaviour {
 					);
 	}
 
-	public int GetGridSize()
+	public static int GetGridSize()
 	{
 		return gridSize;
 	}

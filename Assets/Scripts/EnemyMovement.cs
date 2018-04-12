@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour {
-
 	private Pathfinder pathfinder;
 
-	// Use this for initialization
+	[SerializeField]
+	private int hits = 10;
+
 	void Start ()
 	{
 		pathfinder = FindObjectOfType<Pathfinder>();
@@ -17,14 +18,28 @@ public class EnemyMovement : MonoBehaviour {
 	{
 		foreach (Waypoint waypoint in path)
 		{
-			print("running!");
 			transform.position = waypoint.transform.position;
 			yield return new WaitForSeconds(1f);
 		}
 	}
 
-	// Update is called once per frame
-	void Update () {
-		
+	private void OnParticleCollision(GameObject other)
+	{
+		Damage();
+		if(hits <= 0)
+		{
+			Kill();
+		}
+	}
+
+	private void Damage()
+	{
+		hits--;
+		// TODO: Hit Sounds and Particles
+	}
+
+	private void Kill()
+	{
+		Destroy(gameObject); // TODO: sound effect and particle system for enemy deaths?
 	}
 }
