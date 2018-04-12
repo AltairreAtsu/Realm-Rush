@@ -573,7 +573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fee0c3f2c1d618d45bc5005e86480a08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenSpawns: 1.5
+  timeBetweenSpawns: 2.5
   enemyPrefab: {fileID: 114046048235990396, guid: 80f3126f64c2f414d8ff09628e7c1a8c,
     type: 2}
   spawnLocation: {fileID: 1694338006}
@@ -1007,13 +1007,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4024465461985562, guid: 80f3126f64c2f414d8ff09628e7c1a8c, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4024465461985562, guid: 80f3126f64c2f414d8ff09628e7c1a8c, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
+    - target: {fileID: 114046048235990396, guid: 80f3126f64c2f414d8ff09628e7c1a8c,
+        type: 2}
+      propertyPath: hits
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80f3126f64c2f414d8ff09628e7c1a8c, type: 2}

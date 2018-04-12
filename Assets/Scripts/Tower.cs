@@ -4,7 +4,6 @@ using UnityEngine;
 
 public struct ClosestEnemy
 {
-	public float distance;
 	public bool isInRange;
 	public EnemyMovement enemy;
 }
@@ -37,12 +36,16 @@ public class Tower : MonoBehaviour {
 		foreach (EnemyMovement enemy in enemies)
 		{
 			float distance = Vector3.Distance(enemy.transform.position, transform.position);
+			float closestEnemyDistance = 0f;
+			if (closestEnemy.enemy)
+			{
+				closestEnemyDistance = Vector3.Distance(closestEnemy.enemy.transform.position, transform.position); // TODO: only calculate this when it's required
+				closestEnemy.isInRange = closestEnemyDistance <= attackRange * Waypoint.GetGridSize();
+			}
 
-			if (!closestEnemy.enemy || distance < closestEnemy.distance)
+			if (!closestEnemy.enemy || distance < closestEnemyDistance)
 			{
 				closestEnemy.enemy = enemy;
-				closestEnemy.distance = distance;
-				closestEnemy.isInRange = distance <= attackRange * Waypoint.GetGridSize();
 			}
 		}
 	}
