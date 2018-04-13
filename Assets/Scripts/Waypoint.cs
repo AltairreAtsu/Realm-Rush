@@ -8,11 +8,15 @@ public class Waypoint : MonoBehaviour {
 	[HideInInspector] public Waypoint exploredFrom;
 
 	[SerializeField] private Transform topPlane;
-	[SerializeField] private Transform towerParent;
-	[SerializeField] private Tower towerPrefab;
 
 	private const int gridSize = 10;
 	private Vector2Int gridpos;
+	private TowerFactory towerFactory = null;
+
+	private void Start()
+	{
+		towerFactory = FindObjectOfType<TowerFactory>();
+	}
 
 	public void SetTopColor(Color color)
 	{
@@ -36,9 +40,11 @@ public class Waypoint : MonoBehaviour {
 	{
 		if(isPlaceable)
 		{
-			var tower = Instantiate(towerPrefab, transform.position, Quaternion.identity);
-			tower.transform.SetParent(towerParent);
-			isPlaceable = false;
+			towerFactory.AddTower(this);
+		}
+		else
+		{
+			print("Can't place here!");
 		}
 	}
 }

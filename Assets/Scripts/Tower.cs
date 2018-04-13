@@ -9,19 +9,15 @@ public struct ClosestEnemy
 }
 
 public class Tower : MonoBehaviour {
-	[SerializeField]
-	private Transform turretTop;
-
-	[SerializeField]
 	[Tooltip("Attack range in grid cells.")]
-	private int attackRange = 5;
-
-	[SerializeField]
-	private ParticleSystem bulletSystem;
+	[SerializeField] private int attackRange = 5;
+	[SerializeField] private Transform turretTop;
+	[SerializeField] private ParticleSystem bulletSystem;
 
 	private ClosestEnemy closestEnemy = new ClosestEnemy();
+	public Waypoint waypoint;
 
-	void Update ()
+	private void Update ()
 	{
 		FindClosestEnemy();
 		TargetEnemy();

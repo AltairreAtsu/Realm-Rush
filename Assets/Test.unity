@@ -1212,8 +1212,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1739666392}
+  - component: {fileID: 1739666393}
   m_Layer: 0
-  m_Name: Towers
+  m_Name: Tower Factory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1232,6 +1233,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1739666393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1739666391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce893ccb55ad0b54098d41cbebb8c186, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerPrefab: {fileID: 114607562117572696, guid: b0008cadcfa1e7444b2b449c2a60a4b2,
+    type: 2}
+  towerLimit: 3
 --- !u!1001 &1747980491
 Prefab:
   m_ObjectHideFlags: 0
