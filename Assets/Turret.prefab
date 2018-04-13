@@ -227,8 +227,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turretTop: {fileID: 4343944183448666}
-  target: {fileID: 0}
   attackRange: 5
+  bulletSystem: {fileID: 198325103938767960}
 --- !u!198 &198325103938767960
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -241,7 +241,7 @@ ParticleSystem:
   stopAction: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
