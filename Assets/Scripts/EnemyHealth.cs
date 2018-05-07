@@ -7,6 +7,16 @@ public class EnemyHealth : MonoBehaviour {
 
 	private bool dying = false;
 
+	private static ExplosionObjectPool explosionObjectPool;
+
+	private void Start()
+	{
+		if (explosionObjectPool == null)
+		{
+			explosionObjectPool = FindObjectOfType<ExplosionObjectPool>();
+		}
+	}
+
 	private void OnParticleCollision(GameObject other)
 	{
 		Tower tower = other.GetComponentInParent<Tower>();
@@ -27,6 +37,7 @@ public class EnemyHealth : MonoBehaviour {
 	private void Die()
 	{
 		dying = true;
+		explosionObjectPool.SpawnExplosion(transform.position);
 		Destroy(gameObject); // TODO: sound effect and particle system for enemy deaths?
 	}
 
