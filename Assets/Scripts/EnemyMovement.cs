@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent (typeof(EnemyHealth))]
 public class EnemyMovement : MonoBehaviour {
 	private Pathfinder pathfinder;
+	private EnemyHealth health;
 
-	[SerializeField] private int hitPoints = 10;
 	[SerializeField] private float movementPeriod = .5f;
 
 	void Start ()
 	{
 		pathfinder = FindObjectOfType<Pathfinder>();
+		health = GetComponent<EnemyHealth>();
 		StartCoroutine(FollowPath(pathfinder.GetPath()));
 	}
 
@@ -21,26 +23,8 @@ public class EnemyMovement : MonoBehaviour {
 			transform.position = waypoint.transform.position;
 			yield return new WaitForSeconds(movementPeriod);
 		}
-		Die();
+		health.TriggerDeath();
 	}
 
-	private void OnParticleCollision(GameObject other)
-	{
-		Damage();
-		if(hitPoints <= 0)
-		{
-			Die();
-		}
-	}
 
-	private void Damage()
-	{
-		hitPoints--;
-		// TODO: Hit Sounds and Particles
-	}
-
-	private void Die()
-	{
-		Destroy(gameObject); // TODO: sound effect and particle system for enemy deaths?
-	}
 }

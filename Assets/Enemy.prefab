@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4024465461985562}
   - component: {fileID: 114046048235990396}
+  - component: {fileID: 114890289163134650}
   - component: {fileID: 54678805804638794}
   m_Layer: 0
   m_Name: Enemy
@@ -86,6 +87,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 37b99336461214a40b89b24408e235bb, type: 2}
   m_StaticBatchInfo:
@@ -152,4 +154,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c07e32435905e1a4089f47f26a56987e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hits: 6
+  movementPeriod: 0.5
+--- !u!114 &114890289163134650
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1053944027768896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1aa0e6da6ed33046aa6be9acc83f267, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPoints: 4
