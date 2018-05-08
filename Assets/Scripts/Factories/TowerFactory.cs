@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class TowerFactory : MonoBehaviour {
 	[SerializeField] private Tower towerPrefab = null;
-	[SerializeField] private int towerLimit = 5;
+	[SerializeField] private int towerSoftLimit = 5;
+	[SerializeField] private int towerHardLimit = 10;
 
 	private Queue<Tower> towerQueue = new Queue<Tower>();
 
 	public void AddTower (Waypoint waypointBase)
 	{
-		if (towerQueue.Count < towerLimit)
+		if (towerQueue.Count < towerSoftLimit)
 		{
 			InstantiateNewTower(waypointBase);
 		}
@@ -40,5 +41,16 @@ public class TowerFactory : MonoBehaviour {
 		tower.waypoint = waypointBase;
 
 		towerQueue.Enqueue(tower);
+	}
+
+	public bool IncreaseTowerSoftLimit(int amount)
+	{
+		if (towerSoftLimit <= towerHardLimit && towerSoftLimit + amount <= towerHardLimit)
+		{
+			towerSoftLimit += amount;
+			return true;
+		}
+
+		return false;
 	}
 }

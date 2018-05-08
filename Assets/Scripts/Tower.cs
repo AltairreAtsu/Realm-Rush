@@ -12,6 +12,7 @@ public class Tower : MonoBehaviour {
 	[Tooltip("Attack range in grid cells.")]
 	[SerializeField] private int attackRange = 5;
 	[SerializeField] private int damage = 1;
+	[SerializeField] private int cost = 3;
 	[SerializeField] private Transform turretTop;
 	[SerializeField] private ParticleSystem bulletSystem;
 
@@ -71,5 +72,10 @@ public class Tower : MonoBehaviour {
 	public int GetDamage()
 	{
 		return damage;
+	}
+
+	public int GetCost()
+	{
+		return cost;
 	}
 }

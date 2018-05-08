@@ -6,6 +6,9 @@ public class UserInterfaceManager : MonoBehaviour {
 	[SerializeField] private Text scoreText;
 	[SerializeField] private int maxScore;
 
+	[SerializeField] private Text currencyText;
+	[SerializeField] private int maxCurrency;
+
 	[SerializeField] private Text healthText;
 	[SerializeField] private int maxHealth;
 
@@ -17,6 +20,7 @@ public class UserInterfaceManager : MonoBehaviour {
 
 	void Start () {
 		scoreText.text = "0";
+		currencyText.text = "0";
 		sliders = timeSliderPanel.GetComponentsInChildren<Slider>();
 	}
 
@@ -24,6 +28,12 @@ public class UserInterfaceManager : MonoBehaviour {
 	{
 		if (SessionManager.IsGameLost()) { return;  }
 		UpdateDisplay(scoreText, score, maxScore);
+	}
+
+	public void UpdateCurrnecy(int currency)
+	{
+		if (SessionManager.IsGameLost()) { return; }
+		UpdateDisplay(currencyText, currency, maxCurrency);
 	}
 
 	public void UpdateHealth(int health)
