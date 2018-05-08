@@ -29,7 +29,7 @@ public class EnemyHealth : MonoBehaviour {
 		Damage(tower.GetDamage());
 		if (hitPoints <= 0)
 		{
-			TriggerDeath();
+			TriggerDeath(true);
 		}
 	}
 
@@ -39,19 +39,27 @@ public class EnemyHealth : MonoBehaviour {
 		// TODO: Hit Sounds and Particles
 	}
 
-	private void Die()
+	private void Die(bool giveScore)
 	{
 		dying = true;
-		if(EnemyDeathObservers != null) { EnemyDeathObservers(scoreValue, currencyValue); }
+		if (giveScore)
+		{
+			if (EnemyDeathObservers != null) { EnemyDeathObservers(scoreValue, currencyValue); }
+		}
+		else
+		{
+			if (EnemyDeathObservers != null) { EnemyDeathObservers(0, 0); }
+		}
+
 		explosionObjectPool.SpawnExplosion(transform.position);
 		Destroy(gameObject);
 	}
 
-	public void TriggerDeath()
+	public void TriggerDeath(bool giveScore)
 	{
 		if (!dying)
 		{
-			Die();
+			Die(giveScore);
 		}
 	}
 

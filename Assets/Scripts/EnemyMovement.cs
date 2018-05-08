@@ -23,7 +23,7 @@ public class EnemyMovement : MonoBehaviour {
 			transform.position = waypoint.transform.position;
 			yield return new WaitForSeconds(movementPeriod);
 		}
-		health.TriggerDeath();
+		health.TriggerDeath(false);
 	}
 
 
