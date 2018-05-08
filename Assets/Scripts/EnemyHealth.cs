@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour {
 	[SerializeField] private int hitPoints = 10;
+	[SerializeField] private int scoreValue = 10;
+	[SerializeField] private int currencyValue = 1;
 
 	private bool dying = false;
+
+	public delegate void EnemyDeathEvent(int scoreValue, int currencyValue);
+	public event EnemyDeathEvent EnemyDeathObservers;
 
 	private static ExplosionObjectPool explosionObjectPool;
 
@@ -24,7 +29,7 @@ public class EnemyHealth : MonoBehaviour {
 		Damage(tower.GetDamage());
 		if (hitPoints <= 0)
 		{
-			Die();
+			TriggerDeath();
 		}
 	}
 
@@ -37,8 +42,9 @@ public class EnemyHealth : MonoBehaviour {
 	private void Die()
 	{
 		dying = true;
+		if(EnemyDeathObservers != null) { EnemyDeathObservers(scoreValue, currencyValue); }
 		explosionObjectPool.SpawnExplosion(transform.position);
-		Destroy(gameObject); // TODO: sound effect and particle system for enemy deaths?
+		Destroy(gameObject);
 	}
 
 	public void TriggerDeath()
