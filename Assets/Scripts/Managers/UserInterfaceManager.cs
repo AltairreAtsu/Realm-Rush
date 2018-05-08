@@ -10,9 +10,14 @@ public class UserInterfaceManager : MonoBehaviour {
 	[SerializeField] private int maxHealth;
 
 	[SerializeField] private GameObject losePanel;
+	[SerializeField] private GameObject winPanel;
+	[SerializeField] private GameObject timeSliderPanel;
+
+	private Slider[] sliders;
 
 	void Start () {
 		scoreText.text = "0";
+		sliders = timeSliderPanel.GetComponentsInChildren<Slider>();
 	}
 
 	public void UpdateScore(int score)
@@ -27,9 +32,22 @@ public class UserInterfaceManager : MonoBehaviour {
 		UpdateDisplay(healthText, health, maxHealth);
 	}
 
+	public void UpdateTimeSliders(float percent)
+	{
+		foreach (Slider slider in sliders)
+		{
+			slider.value = percent;
+		}
+	}
+
 	public void DisplayLosePanel()
 	{
 		losePanel.SetActive(true);
+	}
+
+	public void DisplayWinPanel()
+	{
+		winPanel.SetActive(true);
 	}
 
 	private void UpdateDisplay(Text text, int value, int max)
