@@ -17,8 +17,9 @@ public class SessionManager : MonoBehaviour {
 	[SerializeField] private float loseScreenLoadDelay = 0.5f;
 	[SerializeField] private int endScreenBuildIndex = 1;
 
-	private Base mainBase;
 	private AudioSource audioSource;
+	private Base mainBase;
+	private DifficultyEngine difficultyEngine;
 
 	private float startTime;
 	private float currentTime;
@@ -27,6 +28,7 @@ public class SessionManager : MonoBehaviour {
 
 	private void Start () {
 		audioSource = GetComponent<AudioSource>();
+		difficultyEngine = GetComponent<DifficultyEngine>();
 		mainBase = FindObjectOfType<Base>();
 		mainBase.BaseDeathObservers += OnBaseDeath;
 
@@ -37,9 +39,16 @@ public class SessionManager : MonoBehaviour {
 	private void Update()
 	{
 		currentTime = Time.time;
-		var timePercent = 1 - (( currentTime - startTime ) / winTime) ;
+
+		var timePercent = 1 - ((currentTime - startTime) / winTime);
 		uiManager.UpdateTimeSliders(timePercent);
 
+		CheckWinCondition();
+		difficultyEngine.UpdateDifficulty(currentTime - startTime);
+	}
+
+	private void CheckWinCondition()
+	{
 		if (currentTime - startTime > winTime)
 		{
 			// Win the game

@@ -26,5 +26,8 @@ public class EnemyMovement : MonoBehaviour {
 		health.TriggerDeath(false);
 	}
 
-
+	public void SetMovementPeriod(float movementPeriod)
+	{
+		this.movementPeriod = movementPeriod;
+	}
 }

@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 12301999}
   - component: {fileID: 12302003}
   - component: {fileID: 12302002}
+  - component: {fileID: 12302004}
   - component: {fileID: 12302001}
   m_Layer: 0
   m_Name: Game Manager
@@ -266,7 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiManager: {fileID: 157143186}
   winGameSound: {fileID: 8300000, guid: 9d6bf4875c67d2c40895c20a882bba1f, type: 3}
-  winTime: 0.5
+  winTime: 3
   loseGameSound: {fileID: 8300000, guid: 8d4f8c4e939b4594fa3cedb35f046fd5, type: 3}
   loseScreenLoadDelay: 1
   endScreenBuildIndex: 1
@@ -289,6 +290,22 @@ MonoBehaviour:
     type: 2}
   repairCost: 3
   repairAmount: 1
+--- !u!114 &12302004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 12301998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d86785eb30da424d9ac01e3c3fe7f4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyFactory: {fileID: 2137454079}
+  healthMin: 7
+  healthMax: 15
+  increaseInterval: 30
+  healthIncreasePerInterval: 2
 --- !u!1 &35716470
 GameObject:
   m_ObjectHideFlags: 0

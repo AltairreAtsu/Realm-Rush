@@ -9,6 +9,8 @@ public class EnemySpawner : MonoBehaviour {
 	[SerializeField] private EnemyMovement enemyPrefab;
 	[SerializeField] private Transform spawnLocation;
 
+	private int enemySpawnHealth = 3;
+
 	public delegate void EnemySpawnEvent(EnemyHealth health);
 	public EnemySpawnEvent EnemySpawnObservers;
 
@@ -28,8 +30,14 @@ public class EnemySpawner : MonoBehaviour {
 		while (true) {
 			var enemy = Instantiate(enemyPrefab, spawnLocation.position, spawnLocation.rotation);
 			enemy.transform.SetParent(transform);
+			enemy.GetComponent<EnemyHealth>().SetHealth(enemySpawnHealth);
 			if(EnemySpawnObservers != null) { EnemySpawnObservers(enemy.GetComponent<EnemyHealth>()); }
 			yield return new WaitForSeconds(timeBetweenSpawns);
 		}
+	}
+
+	public void SetEnemySpawnHealth(int enemySpawnHealth)
+	{
+		this.enemySpawnHealth = enemySpawnHealth;
 	}
 }

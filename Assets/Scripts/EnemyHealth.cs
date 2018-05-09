@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour {
+	#region Variables
 	[SerializeField] private int hitPoints = 10;
 	[SerializeField] private int scoreValue = 10;
 	[SerializeField] private int currencyValue = 1;
@@ -13,6 +14,7 @@ public class EnemyHealth : MonoBehaviour {
 	public event EnemyDeathEvent EnemyDeathObservers;
 
 	private static ExplosionObjectPool explosionObjectPool;
+	#endregion
 
 	private void Start()
 	{
@@ -63,4 +65,20 @@ public class EnemyHealth : MonoBehaviour {
 		}
 	}
 
+	#region Getters and Setters
+	public void SetHealth(int hitPoints)
+	{
+		this.hitPoints = hitPoints;
+	}
+
+	public void SetScoreValue(int scoreValue)
+	{
+		this.scoreValue = scoreValue;
+	}
+
+	public void SetCurrencyValue (int currencyValue)
+	{
+		this.currencyValue = currencyValue;
+	}
+	#endregion
 }
