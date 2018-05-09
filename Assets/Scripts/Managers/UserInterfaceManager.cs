@@ -16,6 +16,10 @@ public class UserInterfaceManager : MonoBehaviour {
 	[SerializeField] private GameObject winPanel;
 	[SerializeField] private GameObject timeSliderPanel;
 
+	[SerializeField] Text turretLabel;
+	[SerializeField] Text repairLabel;
+	[SerializeField] Text UpgradeLabel;
+
 	private Slider[] sliders;
 
 	void Start () {
@@ -34,6 +38,21 @@ public class UserInterfaceManager : MonoBehaviour {
 	{
 		if (SessionManager.IsGameLost()) { return; }
 		UpdateDisplay(currencyText, currency, maxCurrency);
+	}
+
+	public void UpdateTurretCost(int cost)
+	{
+		UpdateCostString(turretLabel, cost);
+	}
+
+	public void UpdateRepairCost(int cost)
+	{
+		UpdateCostString(repairLabel, cost);
+	}
+
+	public void UpdateUpgradeCost(int cost)
+	{
+		UpdateCostString(UpgradeLabel, cost);
 	}
 
 	public void UpdateHealth(int health)
@@ -58,6 +77,11 @@ public class UserInterfaceManager : MonoBehaviour {
 	public void DisplayWinPanel()
 	{
 		winPanel.SetActive(true);
+	}
+
+	private void UpdateCostString(Text text, int cost)
+	{
+		text.text = cost + " coins";
 	}
 
 	private void UpdateDisplay(Text text, int value, int max)

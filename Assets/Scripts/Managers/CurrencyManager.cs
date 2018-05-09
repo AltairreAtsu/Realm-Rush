@@ -14,7 +14,10 @@ public class CurrencyManager : MonoBehaviour {
 	[Header("Turret Upgrade Fields")]
 	[SerializeField] private int upgradeCost = 3;
 	[SerializeField] private int damageUpgrade = 1;
-	
+
+	[SerializeField] private int costPerPurchaseIncriment = 1;
+	private int additionalCostPerPurchase = 0;
+
 	private int currency = 0;
 
 	private void Start()
@@ -33,14 +36,33 @@ public class CurrencyManager : MonoBehaviour {
 		uiManager.UpdateCurrnecy(currency);
 	}
 
+	private bool CanAfford(int cost)
+	{
+		if(currency >= cost + additionalCostPerPurchase)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	private void Pay (int cost)
+	{
+		currency -= cost + additionalCostPerPurchase;
+		additionalCostPerPurchase += costPerPurchaseIncriment;
+
+		uiManager.UpdateRepairCost(repairCost + additionalCostPerPurchase);
+		uiManager.UpdateTurretCost(standardTower.GetCost() + additionalCostPerPurchase);
+		uiManager.UpdateUpgradeCost(upgradeCost + additionalCostPerPurchase);
+	}
+
 	private bool BuyTurret(Tower tower)
 	{
 		var cost = tower.GetCost();
-		if (currency >= cost)
+		if (CanAfford(cost))
 		{
 			if (towerFactory.IncreaseTowerSoftLimit(1))
 			{
-				currency -= cost;
+				Pay(cost);
 				uiManager.UpdateCurrnecy(currency);
 				return true;
 			}
@@ -56,9 +78,9 @@ public class CurrencyManager : MonoBehaviour {
 
 	public void RepairBase()
 	{
-		if (currency >= repairCost)
+		if (CanAfford(repairCost))
 		{
-			currency -= repairCost;
+			Pay(repairCost);
 			uiManager.UpdateCurrnecy(currency);
 			mainBase.Repair(repairAmount);
 		}
@@ -67,9 +89,9 @@ public class CurrencyManager : MonoBehaviour {
 
 	public void BuyTurretUpgrade()
 	{
-		if(currency >= upgradeCost)
+		if(CanAfford(upgradeCost))
 		{
-			currency -= upgradeCost;
+			Pay(upgradeCost);
 			uiManager.UpdateCurrnecy(currency);
 
 			var turrets = FindObjectsOfType<Tower>();
@@ -78,5 +100,5 @@ public class CurrencyManager : MonoBehaviour {
 				tower.IncreaseDamage(damageUpgrade);
 			}
 		}
-			}
+	}
 }

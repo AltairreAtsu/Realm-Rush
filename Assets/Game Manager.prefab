@@ -156,10 +156,11 @@ MonoBehaviour:
   uiManager: {fileID: 0}
   standardTower: {fileID: 114607562117572696, guid: b0008cadcfa1e7444b2b449c2a60a4b2,
     type: 2}
-  repairCost: 3
-  repairAmount: 1
+  repairCost: 1
+  repairAmount: 3
   upgradeCost: 3
   damageUpgrade: 1
+  costPerPurchaseIncriment: 1
 --- !u!114 &114606383985507394
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -173,10 +174,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiManager: {fileID: 0}
   winGameSound: {fileID: 8300000, guid: 9d6bf4875c67d2c40895c20a882bba1f, type: 3}
-  winTime: 3
+  winTime: 1.5
   loseGameSound: {fileID: 8300000, guid: 8d4f8c4e939b4594fa3cedb35f046fd5, type: 3}
   loseScreenLoadDelay: 1
-  endScreenBuildIndex: 2
+  endScreenBuildIndex: 3
 --- !u!114 &114771922275136932
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -202,7 +203,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyFactory: {fileID: 0}
-  healthMin: 7
-  healthMax: 15
-  increaseInterval: 30
+  healthMin: 10
+  healthMax: 30
+  minSpeed: 0.7
+  maxSpeed: 0.3
+  increaseInterval: 6.55
   healthIncreasePerInterval: 2

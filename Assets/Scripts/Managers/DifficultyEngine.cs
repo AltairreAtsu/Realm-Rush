@@ -7,6 +7,8 @@ public class DifficultyEngine : MonoBehaviour {
 
 	[SerializeField] int healthMin = 3;
 	[SerializeField] int healthMax = 15;
+	[SerializeField] float minSpeed = 0.7f;
+	[SerializeField] float maxSpeed = 0.3f;
 	[SerializeField] float increaseInterval = 30f;
 	[SerializeField] int healthIncreasePerInterval = 2;
 	
@@ -17,6 +19,7 @@ public class DifficultyEngine : MonoBehaviour {
 		enemyHealth = IntClmap(enemyHealth, healthMin, healthMax);
 
 		enemyFactory.SetEnemySpawnHealth(enemyHealth);
+		enemyFactory.SetEnemySpawnSpeed(Random.Range(minSpeed, maxSpeed) );
 	}
 
 	private int IntClmap(int value, int min, int max)

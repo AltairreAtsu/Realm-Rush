@@ -10,6 +10,7 @@ public class EnemySpawner : MonoBehaviour {
 	[SerializeField] private Transform spawnLocation;
 
 	private int enemySpawnHealth = 3;
+	private float enemySpawnSpeed = 0.5f;
 
 	public delegate void EnemySpawnEvent(EnemyHealth health);
 	public EnemySpawnEvent EnemySpawnObservers;
@@ -39,5 +40,10 @@ public class EnemySpawner : MonoBehaviour {
 	public void SetEnemySpawnHealth(int enemySpawnHealth)
 	{
 		this.enemySpawnHealth = enemySpawnHealth;
+	}
+
+	public void SetEnemySpawnSpeed(float enemySpawnSpeed)
+	{
+		this.enemySpawnSpeed = enemySpawnSpeed;
 	}
 }

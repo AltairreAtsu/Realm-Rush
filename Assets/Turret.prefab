@@ -230,6 +230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 5
   damage: 2
+  cost: 5
   turretTop: {fileID: 4343944183448666}
   bulletSystem: {fileID: 198325103938767960}
   waypoint: {fileID: 0}
