@@ -23,8 +23,9 @@ public class SessionManager : MonoBehaviour {
 
 	private float startTime;
 	private float currentTime;
-
+	private bool gameWon = false;
 	private static bool GAME_LOST = false;
+	
 
 	private void Start () {
 		audioSource = GetComponent<AudioSource>();
@@ -38,6 +39,7 @@ public class SessionManager : MonoBehaviour {
 
 	private void Update()
 	{
+		if(gameWon || GAME_LOST) { return; }
 		currentTime = Time.time;
 
 		var timePercent = 1 - ((currentTime - startTime) / winTime);
@@ -51,7 +53,7 @@ public class SessionManager : MonoBehaviour {
 	{
 		if (currentTime - startTime > winTime)
 		{
-			// Win the game
+			gameWon = true;
 			audioSource.clip = winGameSound;
 			audioSource.Play();
 			uiManager.DisplayWinPanel();
