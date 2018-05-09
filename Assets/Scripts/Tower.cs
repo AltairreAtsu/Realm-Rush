@@ -69,6 +69,11 @@ public class Tower : MonoBehaviour {
 		}
 	}
 
+	public void IncreaseDamage(int amount)
+	{
+		damage += amount;
+	}
+
 	public int GetDamage()
 	{
 		return damage;

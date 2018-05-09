@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CurrencyManager : MonoBehaviour {
-	[SerializeField] EnemySpawner enemyFactory;
-	[SerializeField] TowerFactory towerFactory;
-	[SerializeField] Base mainBase;
-	[SerializeField] UserInterfaceManager uiManager;
-	[SerializeField] Tower standardTower;
+	[SerializeField] private EnemySpawner enemyFactory;
+	[SerializeField] private TowerFactory towerFactory;
+	[SerializeField] private Base mainBase;
+	[SerializeField] private UserInterfaceManager uiManager;
+	[SerializeField] private Tower standardTower;
 	[Header("Repair Fields")]
-	[SerializeField] int repairCost;
-	[SerializeField] int repairAmount;
-
+	[SerializeField] private int repairCost = 3;
+	[SerializeField] private int repairAmount = 1;
+	[Header("Turret Upgrade Fields")]
+	[SerializeField] private int upgradeCost = 3;
+	[SerializeField] private int damageUpgrade = 1;
+	
 	private int currency = 0;
 
 	private void Start()
@@ -61,4 +64,19 @@ public class CurrencyManager : MonoBehaviour {
 		}
 		
 	}
+
+	public void BuyTurretUpgrade()
+	{
+		if(currency >= upgradeCost)
+		{
+			currency -= upgradeCost;
+			uiManager.UpdateCurrnecy(currency);
+
+			var turrets = FindObjectsOfType<Tower>();
+			foreach (Tower tower in turrets)
+			{
+				tower.IncreaseDamage(damageUpgrade);
+			}
+		}
+			}
 }
