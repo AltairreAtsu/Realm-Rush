@@ -6,14 +6,21 @@ public class TowerFactory : MonoBehaviour {
 	[SerializeField] private Tower towerPrefab = null;
 	[SerializeField] private int towerSoftLimit = 5;
 	[SerializeField] private int towerHardLimit = 10;
+	[SerializeField] private UserInterfaceManager uiManager;
 
 	private Queue<Tower> towerQueue = new Queue<Tower>();
+
+	private void Start()
+	{
+		uiManager.UpdatePurchasedTowers(0, towerSoftLimit);
+	}
 
 	public void AddTower (Waypoint waypointBase)
 	{
 		if (towerQueue.Count < towerSoftLimit)
 		{
 			InstantiateNewTower(waypointBase);
+			uiManager.UpdatePurchasedTowers(towerQueue.Count, towerSoftLimit);
 		}
 		else
 		{
@@ -48,6 +55,7 @@ public class TowerFactory : MonoBehaviour {
 		if (towerSoftLimit <= towerHardLimit && towerSoftLimit + amount <= towerHardLimit)
 		{
 			towerSoftLimit += amount;
+			uiManager.UpdatePurchasedTowers(towerQueue.Count, towerSoftLimit);
 			return true;
 		}
 

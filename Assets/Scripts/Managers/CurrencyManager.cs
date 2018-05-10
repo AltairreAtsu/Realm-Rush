@@ -19,6 +19,7 @@ public class CurrencyManager : MonoBehaviour {
 	private int additionalCostPerPurchase = 0;
 
 	private int currency = 0;
+	private int purchasedUpgrades = 0;
 
 	private void Start()
 	{
@@ -45,14 +46,20 @@ public class CurrencyManager : MonoBehaviour {
 		return false;
 	}
 
-	private void Pay (int cost)
+	private void TaxedPay (int cost)
 	{
-		currency -= cost + additionalCostPerPurchase;
+		Pay(cost);
 		additionalCostPerPurchase += costPerPurchaseIncriment;
 
 		uiManager.UpdateRepairCost(repairCost + additionalCostPerPurchase);
 		uiManager.UpdateTurretCost(standardTower.GetCost() + additionalCostPerPurchase);
 		uiManager.UpdateUpgradeCost(upgradeCost + additionalCostPerPurchase);
+	}
+
+	private void Pay (int cost)
+	{
+		currency -= cost + additionalCostPerPurchase;
+
 	}
 
 	private bool BuyTurret(Tower tower)
@@ -62,7 +69,7 @@ public class CurrencyManager : MonoBehaviour {
 		{
 			if (towerFactory.IncreaseTowerSoftLimit(1))
 			{
-				Pay(cost);
+				TaxedPay(cost);
 				uiManager.UpdateCurrnecy(currency);
 				return true;
 			}
@@ -78,11 +85,10 @@ public class CurrencyManager : MonoBehaviour {
 
 	public void RepairBase()
 	{
-		if (CanAfford(repairCost))
+		if (CanAfford(repairCost) && mainBase.Repair(repairAmount))
 		{
 			Pay(repairCost);
 			uiManager.UpdateCurrnecy(currency);
-			mainBase.Repair(repairAmount);
 		}
 		
 	}
@@ -91,8 +97,10 @@ public class CurrencyManager : MonoBehaviour {
 	{
 		if(CanAfford(upgradeCost))
 		{
-			Pay(upgradeCost);
+			TaxedPay(upgradeCost);
 			uiManager.UpdateCurrnecy(currency);
+			purchasedUpgrades++;
+			uiManager.UpdatePurchasedUpgrades(purchasedUpgrades);
 
 			var turrets = FindObjectsOfType<Tower>();
 			foreach (Tower tower in turrets)

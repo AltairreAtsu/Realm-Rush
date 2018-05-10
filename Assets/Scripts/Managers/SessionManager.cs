@@ -80,6 +80,11 @@ public class SessionManager : MonoBehaviour {
 		winTime = winTime * 60;
 	}
 
+	private void OnDestroy()
+	{
+		GAME_LOST = false;
+	}
+
 	public static bool IsGameLost()
 	{
 		return GAME_LOST;

@@ -10,21 +10,28 @@ public class UserInterfaceManager : MonoBehaviour {
 	[SerializeField] private int maxCurrency;
 
 	[SerializeField] private Text healthText;
-	[SerializeField] private int maxHealth;
+	[SerializeField] private Slider healthSlider;
+	[SerializeField] private int maxDisplayedHealth;
 
 	[SerializeField] private GameObject losePanel;
 	[SerializeField] private GameObject winPanel;
 	[SerializeField] private GameObject timeSliderPanel;
 
-	[SerializeField] Text turretLabel;
-	[SerializeField] Text repairLabel;
-	[SerializeField] Text UpgradeLabel;
+	[SerializeField] private Text turretLabel;
+	[SerializeField] private Text repairLabel;
+	[SerializeField] private Text UpgradeLabel;
+
+	[SerializeField] private Text turretCapLabel;
+
+	[SerializeField] private Text purchasedUpgradesLabel;
+	[SerializeField] private int maxPurchasedUpgrades;
 
 	private Slider[] sliders;
 
 	void Start () {
 		scoreText.text = "0";
 		currencyText.text = "0";
+		purchasedUpgradesLabel.text = "0";
 		sliders = timeSliderPanel.GetComponentsInChildren<Slider>();
 	}
 
@@ -55,10 +62,12 @@ public class UserInterfaceManager : MonoBehaviour {
 		UpdateCostString(UpgradeLabel, cost);
 	}
 
-	public void UpdateHealth(int health)
+	public void UpdateHealth(int health, int maxHealth)
 	{
 		if (SessionManager.IsGameLost()) { return; }
-		UpdateDisplay(healthText, health, maxHealth);
+
+		UpdateDisplay(healthText, health, maxDisplayedHealth);
+		healthSlider.value = (float)health / maxHealth;
 	}
 
 	public void UpdateTimeSliders(float percent)
@@ -77,6 +86,16 @@ public class UserInterfaceManager : MonoBehaviour {
 	public void DisplayWinPanel()
 	{
 		winPanel.SetActive(true);
+	}
+
+	public void UpdatePurchasedUpgrades(int purchasedUpgrades)
+	{
+		UpdateDisplay(purchasedUpgradesLabel, purchasedUpgrades, maxPurchasedUpgrades);
+	}
+
+	public void UpdatePurchasedTowers(int usedTowers, int softCap)
+	{
+		turretCapLabel.text = usedTowers + "/" + softCap;
 	}
 
 	private void UpdateCostString(Text text, int cost)
