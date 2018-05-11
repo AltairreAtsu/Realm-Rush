@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class OptionsMenu : MonoBehaviour {
 
 	[SerializeField] private AudioMixer audioMixer;
+	[SerializeField] private Dropdown qualityDropDown;
 	[SerializeField] private Dropdown resolutionDropDown;
 	[SerializeField] private Toggle fullScreenToggle;
 
@@ -14,6 +15,7 @@ public class OptionsMenu : MonoBehaviour {
 
 	private void Start()
 	{
+		qualityDropDown.value = QualitySettings.GetQualityLevel();
 
 		fullScreenToggle.isOn = Screen.fullScreen;
 		supportedResolutions = Screen.resolutions;
